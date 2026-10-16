@@ -34,6 +34,8 @@ dsh plugin --profile desktop add dsh-archive-purge
 | **管理面板** | 侧栏面板图标 →「已归档管理」：统一列出全部已归档会话，含工作区、路径、磁盘占用、创建时间、子会话数；支持搜索、多选、批量取消归档。 |
 | **彻底删除** | 逐条或批量彻底删除，弹窗二次确认（列出会话、体积、将删除的内容）。 |
 
+面板的配色取自宿主的 `--dsw-alias-*` token，并内置中英两套文案，因此它跟随应用当前的主题与语言，而不是自带一套外观。
+
 ## 彻底删除的确切边界
 
 ![二次确认弹窗](https://raw.githubusercontent.com/joyboy-yy/dsh-archive-purge/main/docs/confirm.png)

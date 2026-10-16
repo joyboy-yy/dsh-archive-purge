@@ -35,6 +35,8 @@ Use your own profile name in place of `desktop` (for example `web`). Then switch
 | **Management panel** | A sidebar icon plus a centre-column panel lists every archived session with its workspace, path, disk footprint, creation time and child-session count; it supports search, multi-select and batch unarchive. |
 | **Permanent delete** | Delete sessions one at a time or in bulk, behind a confirmation dialog that names the sessions, their size, and exactly what will be removed. |
 
+The panel takes its colours from the host's `--dsw-alias-*` tokens and ships English and Chinese wording, so it follows whichever theme and locale the app is in rather than a look of its own.
+
 ## Permanent delete: the exact boundary
 
 ![The confirmation dialog](https://raw.githubusercontent.com/joyboy-yy/dsh-archive-purge/main/docs/confirm.png)
