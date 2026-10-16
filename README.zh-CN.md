@@ -97,10 +97,11 @@ DSH 的浏览器会话列表是**事件驱动**的：它只会因 `api-session/a
 npm test
 ```
 
-`npm test` 跑 22 个测试，基于 `node --test`、零依赖。test 目录不进发布包。
+`npm test` 跑 29 个测试，基于 `node --test`、零依赖。test 目录不进发布包。
 
 - `test/smoke.test.mjs` 用桩上下文驱动两半，盯的是**重命名会静默破坏**的那几个不变量：客户端注册所用的模块 id、宿主挂载与客户端调用的路由前缀、面板占用的 slot key，以及按 id 生成的那条隐藏规则。
 - `test/host-delete.test.mjs` 拿一个临时 `DSH_HOME` 跑真实路由，日志目录与投影缓存记录都是真的建、真的删。它把每一条拒绝都钉在做出该判断的分支上，验证被拒绝时磁盘分毫未动，并固定住宿主所承诺的顺序——先广播移除，**再**改写归档集合。
+- `test/package.test.mjs` 拿 manifest 与发布文件集对账：DSH 运行时解析的每一样东西——入口、`./client` 导出、bundle patch——都必须列在 `files` 里，且不允许存在任何会触发构建授权的安装期脚本。
 
 ## 许可证
 

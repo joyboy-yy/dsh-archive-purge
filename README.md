@@ -98,10 +98,11 @@ There is nothing to build — both halves ship as they are written. To check a c
 npm test
 ```
 
-`npm test` runs 22 tests on `node --test` with no dependencies. The test directory is not part of the published package.
+`npm test` runs 29 tests on `node --test` with no dependencies. The test directory is not part of the published package.
 
 - `test/smoke.test.mjs` drives both halves with a stub context and covers the invariants a rename breaks *silently*: the module id the client registers under, the route prefix the host mounts and the client calls, the slot keys the panel occupies, and the per-id hide rule.
 - `test/host-delete.test.mjs` runs the real routes against a throwaway `DSH_HOME` on disk, so the log directory and the projection-cache record are genuinely created and genuinely removed. It pins every refusal to the branch that decides it, checks that a refusal touches nothing at all, and fixes the order the host documents — announce the removal, *then* rewrite the archive set.
+- `test/package.test.mjs` checks the manifest against the published file set: everything DSH resolves at runtime — the entry point, the `./client` export, the bundle patch — has to be listed in `files`, and no install lifecycle script may demand a build approval.
 
 ## License
 
