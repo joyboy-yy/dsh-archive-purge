@@ -80,6 +80,16 @@ Two layers remove it:
 - Deleting a session does not cascade to sessions forked from it. The panel shows the child-session count as a hint.
 - Under a non-Chinese, non-English locale, relative times and the fallback CSS use one of the two shipped wordings (English or Chinese).
 
+## Development
+
+There is nothing to build — both halves ship as they are written. To check a change:
+
+```sh
+npm test
+```
+
+`test/smoke.test.mjs` drives both halves with a stub context, using `node --test` and no dependencies. It covers the invariants a rename breaks *silently*: the module id the client registers under, the route prefix the host mounts and the client calls, the slot keys the panel occupies, and the per-id hide rule. The test directory is not part of the published package.
+
 ## License
 
 [MIT](./LICENSE)
