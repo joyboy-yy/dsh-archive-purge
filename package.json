@@ -1,10 +1,7 @@
 {
   "name": "dsh-archive-purge",
-  "version": "1.0.1",
-  "description": {
-    "en": "Force-hides archived sessions from the DSH sidebar whatever the view filter says, and adds a panel that restores them or permanently deletes them — session log directory, archive and pin records, and projection cache.",
-    "zh": "无论侧栏「归档显示」如何设置都强制隐藏已归档会话，并提供管理面板：取消归档，或彻底删除会话日志目录、归档与置顶登记及投影缓存。"
-  },
+  "version": "1.0.2",
+  "description": "无论侧栏「归档显示」如何设置，已归档会话都强制不出现在会话列表；提供统一管理面板，可取消归档，或彻底删除会话日志目录、归档与置顶登记及投影缓存。Force-hides archived DSH sessions and adds a panel to unarchive them or delete them permanently.",
   "type": "module",
   "main": "index.js",
   "exports": {
@@ -40,6 +37,10 @@
     "delete",
     "purge"
   ],
+  "author": {
+    "name": "joyboy-yy",
+    "url": "https://github.com/joyboy-yy"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
