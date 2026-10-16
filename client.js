@@ -472,6 +472,8 @@ window.__ModuleLoader__.load({
 .am-notice{margin:8px 8px 4px;padding:9px 12px;border-radius:var(--dsw-radius-md,8px);background:var(--dsw-alias-bg-layer-2);font-size:12px;line-height:18px;color:var(--dsw-alias-label-secondary)}
 .am-notice.warn{color:var(--dsw-alias-state-warn-primary)}
 .am-notice.error{color:var(--dsw-alias-state-error-primary)}
+.am-notice-action{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.am-notice-action .am-btn{flex:none}
 .am-notice-list{margin:6px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:2px}
 .am-notice-list li{display:flex;gap:8px;justify-content:space-between;font-size:11.5px}
 .am-notice-name{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--dsw-alias-label-primary)}
@@ -807,6 +809,22 @@ ${exact}
             onClick: refresh,
           }, tSlot('retry')))
 
+        // A failed inventory read is surfaced above the list, not only in the
+        // empty state: the rows below still come from the live workspace
+        // registry, so the panel looks populated while every size reads “—”
+        // and every row offers “Clear record”, because no disk truth arrived.
+        // Saying so is the difference between a degraded panel and a lying one.
+        const loadFailure = status === 'error' && React.createElement('div', {
+          className: 'am-notice error am-notice-action',
+          role: 'status',
+        },
+        React.createElement('span', null, fill(tSlot('loadFailed'), { message: error })),
+        React.createElement('button', {
+          type: 'button',
+          className: 'am-btn',
+          onClick: refresh,
+        }, tSlot('retry')))
+
         const body = React.createElement('div', { className: 'am-body' },
           notice !== null && React.createElement('div', {
             className: `am-notice${notice.kind === 'info' ? '' : ` ${notice.kind}`}`,
@@ -816,6 +834,7 @@ ${exact}
             notice.details.map((entry) => React.createElement('li', { key: entry.id },
               React.createElement('span', { className: 'am-notice-name' }, entry.title),
               React.createElement('span', null, entry.reason))))),
+          loadFailure,
           visible.length === 0 ? emptyState : visible.map((row) => React.createElement(ArchiveRow, {
             key: row.id,
             row,
