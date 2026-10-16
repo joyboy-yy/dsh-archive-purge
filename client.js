@@ -56,6 +56,7 @@ window.__ModuleLoader__.load({
         panel: '已归档管理',
         title: '已归档管理',
         subtitle: '共 {count} 个已归档会话 · 磁盘占用 {size}',
+        subtitleOne: '共 {count} 个已归档会话 · 磁盘占用 {size}',
         subtitleEmpty: '暂无已归档会话',
         refresh: '刷新',
         refreshing: '读取中…',
@@ -83,33 +84,42 @@ window.__ModuleLoader__.load({
         liveAgent: 'Agent 持有',
         missingLog: '日志不在磁盘上',
         childCount: '{count} 个子会话',
+        childCountOne: '{count} 个子会话',
         metaFiles: '{count} 个文件',
+        metaFilesOne: '{count} 个文件',
         metaCache: '含投影缓存 {size}',
         confirmTitle: '彻底删除 {count} 个已归档会话？',
+        confirmTitleOne: '彻底删除 {count} 个已归档会话？',
         confirmIrreversible: '此操作不可恢复：会话记录、对话历史与标题都不会再出现在 DSH 中。',
         confirmRemoves: '将删除会话日志目录（合计 {size}）、归档与置顶登记、投影缓存记录。',
         confirmMissing: '其中 {count} 项在磁盘上已无日志，只会清理它们的归档登记。',
+        confirmMissingOne: '其中 {count} 项在磁盘上已无日志，只会清理它的归档登记。',
         confirmList: '即将删除',
         confirmMore: '…另有 {count} 项',
         cancel: '取消',
         confirmAction: '彻底删除',
         working: '正在删除…',
         restored: '已取消归档 {count} 项，它们已回到会话列表。',
+        restoredOne: '已取消归档 {count} 项，它已回到会话列表。',
         deleted: '已彻底删除 {count} 项，释放 {size}。',
         purged: '已清理 {count} 项失效登记。',
+        purgedOne: '已清理 {count} 项失效登记。',
         refusedLive: '{count} 项仍由本进程中的 Agent 持有，已跳过。',
         refusedActive: '{count} 项仍有进行中的工作，已跳过。',
+        refusedActiveOne: '{count} 项仍有进行中的工作，已跳过。',
         failedCount: '{count} 项删除失败。',
         reasonLive: '该会话仍由本进程中的 Agent 持有（可能已打开写入句柄）：请重启 DSH 后再删除。',
         reasonActive: '该会话仍有进行中的工作：请先停止这些工作再删除。',
         reasonOther: '宿主侧拒绝：{reason}',
         footerNote: '彻底删除只移除日志目录、归档/置顶登记与投影缓存；附件目录按内容寻址、可能与其它会话共享，因此保留。侧栏“视图选项 → 归档显示”固定为“隐藏已归档”，已归档会话只在本面板管理。',
         ghostsHidden: '另有 {count} 行属于「会话已删除、界面仍缓存」的残留，已一并隐藏；刷新页面即可彻底清除。',
+        ghostsHiddenOne: '另有 {count} 行属于「会话已删除、界面仍缓存」的残留，已一并隐藏；刷新页面即可彻底清除。',
       },
       en: {
         panel: 'Archived sessions',
         title: 'Archived sessions',
         subtitle: '{count} archived sessions · {size} on disk',
+        subtitleOne: '{count} archived session · {size} on disk',
         subtitleEmpty: 'No archived sessions',
         refresh: 'Refresh',
         refreshing: 'Reading…',
@@ -137,28 +147,36 @@ window.__ModuleLoader__.load({
         liveAgent: 'Agent attached',
         missingLog: 'No log on disk',
         childCount: '{count} child sessions',
+        childCountOne: '{count} child session',
         metaFiles: '{count} files',
+        metaFilesOne: '{count} file',
         metaCache: 'incl. {size} projection cache',
         confirmTitle: 'Permanently delete {count} archived sessions?',
+        confirmTitleOne: 'Permanently delete {count} archived session?',
         confirmIrreversible: 'This cannot be undone: the session, its history, and its title will be gone from DSH.',
         confirmRemoves: 'Removes the session log directories ({size}), the archive and pin records, and the projection-cache records.',
         confirmMissing: '{count} of them have no log on disk; only their archive records are cleared.',
+        confirmMissingOne: '{count} of them has no log on disk; only its archive record is cleared.',
         confirmList: 'About to delete',
         confirmMore: '…and {count} more',
         cancel: 'Cancel',
         confirmAction: 'Delete permanently',
         working: 'Deleting…',
         restored: 'Unarchived {count}; they are back in the conversation list.',
+        restoredOne: 'Unarchived {count}; it is back in the conversation list.',
         deleted: 'Permanently deleted {count}, freeing {size}.',
         purged: 'Cleared {count} stale records.',
+        purgedOne: 'Cleared {count} stale record.',
         refusedLive: 'Skipped {count} still held by an Agent in this process.',
         refusedActive: 'Skipped {count} that still own work in progress.',
+        refusedActiveOne: 'Skipped {count} that still owns work in progress.',
         failedCount: '{count} failed to delete.',
         reasonLive: 'The session is still held by an Agent in this process (it may own the log write handle): restart DSH, then delete.',
         reasonActive: 'The session still owns work in progress: stop that work first.',
         reasonOther: 'The host refused: {reason}',
         footerNote: 'Permanent delete removes the log directory, the archive/pin records, and the projection cache. Attachments are content-addressed and may be shared, so they are kept. The sidebar’s “View options → Archived” filter is pinned to “Hide archived”: archived sessions are managed in this panel only.',
         ghostsHidden: '{count} more rows are leftovers — the session is deleted but this browser still caches it. Hidden as well; a page reload clears them for good.',
+        ghostsHiddenOne: '1 more row is a leftover — the session is deleted but this browser still caches it. Hidden as well; a page reload clears it for good.',
       },
     }
 
@@ -381,6 +399,24 @@ window.__ModuleLoader__.load({
       return String(template).replace(/\{(\w+)\}/g, (match, key) => (
         Object.hasOwn(values, key) ? String(values[key]) : match
       ))
+    }
+
+    /**
+     * Pick the singular template for a count of exactly one, so an English
+     * reader never sees “1 files”. A dictionary without the singular key keeps
+     * the plural one — Chinese reuses the same wording either way — and the
+     * translator returns the key itself when it is missing, which is how the
+     * miss is detected.
+     * @param t - the bound translator.
+     * @param key - dictionary key holding the plural template.
+     * @param count - the number being described.
+     * @returns the template to interpolate.
+     */
+    function countTemplate(t, key, count) {
+      if (count !== 1) return t(key)
+      const singularKey = `${key}One`
+      const singular = t(singularKey)
+      return singular === singularKey ? t(key) : singular
     }
 
     /**
@@ -634,15 +670,15 @@ ${exact}
               const erased = done.length - purged
               const freed = done.reduce((sum, entry) => sum + (entry.sizeBytes ?? 0) + (entry.cacheBytes ?? 0), 0)
               if (erased > 0) parts.push(fill(tSlot('deleted'), { count: erased, size: formatBytes(freed) }))
-              if (purged > 0) parts.push(fill(tSlot('purged'), { count: purged }))
+              if (purged > 0) parts.push(fill(countTemplate(tSlot, 'purged', purged), { count: purged }))
               // The erased ids are hidden from now on even if the browser's
               // cached row outlives the removal event.
               if (done.length > 0) hidden.rememberDeleted(done.map((entry) => entry.id))
             } else if (done.length > 0) {
-              parts.push(fill(tSlot('restored'), { count: done.length }))
+              parts.push(fill(countTemplate(tSlot, 'restored', done.length), { count: done.length }))
             }
             if (refusedLive > 0) parts.push(fill(tSlot('refusedLive'), { count: refusedLive }))
-            if (refusedActive > 0) parts.push(fill(tSlot('refusedActive'), { count: refusedActive }))
+            if (refusedActive > 0) parts.push(fill(countTemplate(tSlot, 'refusedActive', refusedActive), { count: refusedActive }))
             if (failed > 0) parts.push(fill(tSlot('failedCount'), { count: failed }))
             // Name every session that did not go through, with the reason the
             // Host gave, so a refusal is actionable instead of just counted.
@@ -698,9 +734,9 @@ ${exact}
             React.createElement('div', { className: 'am-title' }, tSlot('title')),
             React.createElement('div', { className: 'am-sub' }, rows.length === 0
               ? tSlot('subtitleEmpty')
-              : fill(tSlot('subtitle'), { count: rows.length, size: formatBytes(totalBytes) })),
+              : fill(countTemplate(tSlot, 'subtitle', rows.length), { count: rows.length, size: formatBytes(totalBytes) })),
             ghostCount > 0 && React.createElement('div', { className: 'am-sub am-ghost-note' },
-              fill(tSlot('ghostsHidden'), { count: ghostCount }))),
+              fill(countTemplate(tSlot, 'ghostsHidden', ghostCount), { count: ghostCount }))),
           React.createElement('div', { className: 'am-head-actions' },
             React.createElement('button', {
               type: 'button',
@@ -810,8 +846,8 @@ ${exact}
       if (row.live.running) badges.push(React.createElement('span', { key: 'running', className: 'am-badge warn', title: t('reasonActive') }, t('liveRunning')))
       else if (row.live.agent) badges.push(React.createElement('span', { key: 'agent', className: 'am-badge warn', title: t('reasonLive') }, t('liveAgent')))
       if (!row.exists) badges.push(React.createElement('span', { key: 'missing', className: 'am-badge error' }, t('missingLog')))
-      if (row.childIds.length > 0) badges.push(React.createElement('span', { key: 'children', className: 'am-badge' }, fill(t('childCount'), { count: row.childIds.length })))
-      const files = row.exists ? fill(t('metaFiles'), { count: row.fileCount }) : ''
+      if (row.childIds.length > 0) badges.push(React.createElement('span', { key: 'children', className: 'am-badge' }, fill(countTemplate(t, 'childCount', row.childIds.length), { count: row.childIds.length })))
+      const files = row.exists ? fill(countTemplate(t, 'metaFiles', row.fileCount), { count: row.fileCount }) : ''
       const cache = row.cacheBytes > 0 ? fill(t('metaCache'), { size: formatBytes(row.cacheBytes) }) : ''
       const facts = [files, cache].filter((part) => part !== '').join(' · ')
       if (facts !== '') badges.push(React.createElement('span', { key: 'facts', className: 'am-badge' }, facts))
@@ -907,7 +943,7 @@ ${exact}
           className: 'am-scrim',
           role: 'dialog',
           'aria-modal': 'true',
-          'aria-label': fill(tSlot('confirmTitle'), { count: rows.length }),
+          'aria-label': fill(countTemplate(tSlot, 'confirmTitle', rows.length), { count: rows.length }),
           onMouseDown: (event) => {
             if (event.target === event.currentTarget) signal.set(null)
           },
@@ -915,12 +951,12 @@ ${exact}
           React.createElement('div', { className: 'am-dialog-head' },
             React.createElement(Icon, { name: 'alert', size: 18 }),
             React.createElement('div', { className: 'am-dialog-title' },
-              fill(tSlot('confirmTitle'), { count: rows.length }))),
+              fill(countTemplate(tSlot, 'confirmTitle', rows.length), { count: rows.length }))),
           React.createElement('div', { className: 'am-dialog-body' },
             React.createElement('div', { className: 'am-warn' }, tSlot('confirmIrreversible')),
             React.createElement('div', null, fill(tSlot('confirmRemoves'), { size: formatBytes(bytes) })),
             missing > 0 && React.createElement('div', { className: 'am-warn' },
-              fill(tSlot('confirmMissing'), { count: missing })),
+              fill(countTemplate(tSlot, 'confirmMissing', missing), { count: missing })),
             React.createElement('ul', { className: 'am-dialog-list' },
               React.createElement('li', null, React.createElement('span', null, tSlot('confirmList'))),
               shown.map((row) => React.createElement('li', { key: row.id },

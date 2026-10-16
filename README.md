@@ -5,6 +5,10 @@ Keeps archived sessions out of the DSH conversation list, and gives them one pla
 > Looking for the npm name `dsh-archive-manager`? That one belongs to a different, unrelated
 > plugin. This is `dsh-archive-purge`.
 
+![The archived-session panel](https://raw.githubusercontent.com/joyboy-yy/dsh-archive-purge/main/docs/panel.png)
+
+*Every screenshot here is rendered from invented sessions — no real titles, paths or sizes.*
+
 ## The two gaps it closes
 
 DSH can archive a session, but:
@@ -32,6 +36,8 @@ Use your own profile name in place of `desktop` (for example `web`). Then switch
 | **Permanent delete** | Delete sessions one at a time or in bulk, behind a confirmation dialog that names the sessions, their size, and exactly what will be removed. |
 
 ## Permanent delete: the exact boundary
+
+![The confirmation dialog](https://raw.githubusercontent.com/joyboy-yy/dsh-archive-purge/main/docs/confirm.png)
 
 One delete removes four things:
 

@@ -247,6 +247,18 @@ test('client half fills the panel slots and installs the hide rule', () => {
     assert.ok(locales[0].dict.en[key], `en dictionary must define ${key}`)
   }
 
+  // A count of one must not fall back to the plural template in English. The
+  // singular key is optional per locale, which is how Chinese reuses one string.
+  for (const key of [
+    'childCount', 'metaFiles', 'ghostsHidden', 'subtitle', 'confirmTitle',
+    'confirmMissing', 'purged', 'restored', 'refusedActive',
+  ]) {
+    assert.ok(locales[0].dict.zh[`${key}One`], `zh dictionary must define ${key}One`)
+    assert.ok(locales[0].dict.en[`${key}One`], `en dictionary must define ${key}One`)
+    assert.notEqual(locales[0].dict.en[`${key}One`], locales[0].dict.en[key],
+      `English must not describe a single item with the plural template (${key})`)
+  }
+
   assert.equal(appended.length, 1, 'exactly one stylesheet is appended')
   assert.equal(appended[0], styleEl)
   assert.match(styleEl.textContent, /\[data-row-key="session:sess-a"\],\[data-row-key="session:sess-b"\]\{display:none!important\}/,

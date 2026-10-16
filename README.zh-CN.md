@@ -4,6 +4,10 @@
 
 > npm 上的 `dsh-archive-manager` 是另一个不相干的插件。本插件是 `dsh-archive-purge`。
 
+![已归档管理面板](https://raw.githubusercontent.com/joyboy-yy/dsh-archive-purge/main/docs/panel.png)
+
+*本文所有截图都由虚构的会话渲染——没有真实的标题、路径或体积。*
+
 ## 它补上的两个缺口
 
 DSH 能归档会话，但是：
@@ -31,6 +35,8 @@ dsh plugin --profile desktop add dsh-archive-purge
 | **彻底删除** | 逐条或批量彻底删除，弹窗二次确认（列出会话、体积、将删除的内容）。 |
 
 ## 彻底删除的确切边界
+
+![二次确认弹窗](https://raw.githubusercontent.com/joyboy-yy/dsh-archive-purge/main/docs/confirm.png)
 
 一次删除会移除四样东西：
 
