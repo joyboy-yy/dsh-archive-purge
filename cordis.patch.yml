@@ -1,0 +1,14 @@
+# The row this bundle contributes to the composition.
+#
+# It lives here, in the bundle, rather than in the profile's own
+# cordis.patch.yml. The Plugins page switch only adds or removes the bundle in
+# the profile's `dsh.profile.bundles`; that selection decides whether this patch
+# layer is applied at all. A row inserted by the profile's own patch would keep
+# loading even with the bundle switched off, so the switch would look inert.
+#
+# `name` resolves from the profile's node_modules, i.e. the package this file
+# ships in — installed there by `dsh plugin --profile <name> add dsh-archive-purge`.
+
+- insert:
+    - id: archive-purge
+      name: dsh-archive-purge

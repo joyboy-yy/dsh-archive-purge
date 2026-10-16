@@ -1,0 +1,52 @@
+{
+  "name": "dsh-archive-purge",
+  "version": "1.0.0",
+  "description": "Force-hides archived sessions from the DSH sidebar whatever the view filter says, and adds a panel that restores them or permanently deletes them — session log directory, archive and pin records, and projection cache.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    }
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "cordis",
+    "archive",
+    "archived-sessions",
+    "session",
+    "delete",
+    "purge"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joyboy-yy/dsh-archive-purge.git"
+  },
+  "homepage": "https://github.com/joyboy-yy/dsh-archive-purge#readme",
+  "bugs": {
+    "url": "https://github.com/joyboy-yy/dsh-archive-purge/issues"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
