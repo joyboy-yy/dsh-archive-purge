@@ -49,6 +49,10 @@ dsh plugin --profile desktop add dsh-archive-purge
 
 ## 拒绝条件（先于任何写入）
 
+![一批删除中有一项被跳过](https://raw.githubusercontent.com/joyboy-yy/dsh-archive-purge/main/docs/refusals.png)
+
+批量操作会逐类报告结果：删掉了哪些、释放了多少，哪些已无日志可删，哪些被拒绝——被拒的会具名列出并给出原因。
+
 - 会话**不在归档集合**里 → 跳过。删除只对已归档会话开放，这是最重要的一道闸。
 - 本进程中仍存在该会话的 **Agent**（`ctx.agents.get(id)`）→ 拒绝（`live`）。Agent 可能已打开该日志的写入句柄，删文件会让写入方把日志「复活」。
 - `workspace/session-activity` 瀑布仍报告**进行中的工作** → 拒绝（`active`）。

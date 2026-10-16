@@ -50,6 +50,10 @@ One delete removes four things:
 
 ## Refusals run before any write
 
+![A batch that skipped one session](https://raw.githubusercontent.com/joyboy-yy/dsh-archive-purge/main/docs/refusals.png)
+
+A batch reports each outcome separately: what was deleted and how much it freed, what had no log left to delete, and what was refused — named, with the reason.
+
 - The session is **not in the archive set** → skipped. Deletion is only ever available for archived sessions.
 - An **agent for that session still exists in this process** (`ctx.agents.get(id)`) → refused (`live`). An agent may already hold the log's write handle, and deleting the file underneath it would let the writer resurrect the log.
 - The `workspace/session-activity` waterfall still reports **work in progress** → refused (`active`).
